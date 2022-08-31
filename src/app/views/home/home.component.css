@@ -1,12 +1,3 @@
-.container-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    
-}
-
-.container {
-    max-width: 1200px;
-}
 
 /* Cabeçalho */
 .header-flex {
@@ -31,6 +22,8 @@ header .menu-bars {
     background-repeat: no-repeat;
     background-color: blueviolet;
 }
+
+
 
 /* Banner Centralizado */
 .banner .banner-info-box {

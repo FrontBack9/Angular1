@@ -32,6 +32,18 @@
 body {
     font-family: 'Roboto-Regular';
     color: white;
-    /* background-color: black; */
+    background-color: black;
     
 }
+
+.container-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    
+}
+
+/* Customização do bootstrap */
+.container {
+    max-width: 1200px;
+}
+
