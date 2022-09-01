@@ -3,32 +3,32 @@
     <fa-icon [icon]="faArrowLeft"></fa-icon>
     <h1 class="titulo">Login</h1>
 
-    <form>
+    <form (ngSubmit)="capturarDados()">
 
                              
         <div class="linha">
             
             <fa-icon [icon]="faUser"></fa-icon>
-            <input type="text" id="nome" placeholder="Nome">
+            <input type="text" id="nome" placeholder="Nome" name="nome" [(ngModel)]="userModel.nome">
         </div>
         
         <div class="linha">
             
             <fa-icon [icon]="faEnvelope"></fa-icon>
-            <input type="email" id="usuario" placeholder="E-mail">
+            <input type="email" id="usuario" placeholder="E-mail" name="usuario" [(ngModel)]="userModel.email">
         </div>
 
         <div class="linha">
             
             <fa-icon [icon]="faLock"></fa-icon>
-            <input type="password" id="senha" placeholder="*****">
+            <input type="password" id="senha" placeholder="*****" name="senha" [(ngModel)]="userModel.senha">
         </div>
 
    
             <p class="mensagem"></p>
 
         
-            <button class="signin" type="button">Sign in</button>
+            <button class="signin" type="submit">Sign in</button>
         
         
     </form>
