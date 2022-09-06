@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "email": "teobaldo@teobaldo.com",
+      "password": "$2a$10$2V/MevmxtUQkiAf3fgJio.MX1Luc/15IsGJ9QTsBq3M9oim2rDBQy",
+      "id": 1
+    },
+    {
+      "email": "maria@gmail.com",
+      "password": "$2a$10$VvUefxTxM3tCkn4D.LLp/eXnKOa5oypAe16y77LPCcTskorcOMQ3e",
+      "id": 2
+    },
+    {
+      "email": "ricardo@gmail.com",
+      "password": "$2a$10$PGNWvonIKIYlijo1vJHp.OQ64/Hxjn8OD8NWF0IDgabmx36ANprze",
+      "id": 3
+    },
+    {
+      "email": "joana@gmail.com",
+      "password": "$2a$10$f4ldeFLQPYvp9tyoQ1zomeogfPAv7XuB1m4fp0QE/RHCRRCm1bYUy",
+      "id": 5
+    }
+  ]
+}
