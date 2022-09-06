@@ -6,11 +6,15 @@
     <form (ngSubmit)="signin()">
 
                              
+        
+
         <div class="linha">
             
             <fa-icon [icon]="faUser"></fa-icon>
             <input type="text" id="nome" placeholder="Nome" name="nome" [(ngModel)]="userModel.nome">
         </div>
+
+
         
         <div class="linha">
             
@@ -25,11 +29,11 @@
         </div>
 
    
-            <p class="mensagem"></p>
+            <p class="mensagem">{{mensagem}}</p>
 
         
             <button class="signin" type="submit">Sign in</button>
-        
+            <button class="signin" type="button" (click)="mostrarNome()">Mostrar nome</button>
         
     </form>
 
