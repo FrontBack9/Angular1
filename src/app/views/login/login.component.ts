@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faUser, faEnvelope, faLock, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   nomeProfessor:any = ""
   mensagem: string = ""
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,10 +28,31 @@ export class LoginComponent implements OnInit {
     this.nomeProfessor = this.userModel.nome;
   }
 
-  validaLogin():boolean{
+  validaLogin(): boolean {
+   //Lista de Palavras Proibidas 
+    let blackList = ["SELECT", "OR", "--", ";", "1 = 1", "1=1", "DROP", "\"\"=\"\"",  "'='", '""=""'];//Lista de palavras chaves
+
+    let ataque = 0;
+
+    blackList.forEach((palavra) => {
+      if(this.userModel.email?.toUpperCase().includes(palavra)){
+        ataque++;//Conta mais uma palavra proibida
+        
+        // console.log(this.userModel.email?.toUpperCase().includes(palavra))
+      }
+
+    })
+
+console.log('ATAQUE', ataque);
+if(ataque>0){//Possui palavra de SQL injection
+  return false; //Não deixa logar
+}
+
+
     if(this.userModel.nome === undefined || this.userModel.nome === '' ||
       this.userModel.email === undefined || this.userModel.email === '' ||
-      this.userModel.password === undefined || this.userModel.password === '' 
+      this.userModel.password === undefined || this.userModel.password === '' ||
+      ataque > 0 
       ){
 
       // console.log(this.userModel);
@@ -38,7 +60,8 @@ export class LoginComponent implements OnInit {
     } else{
       return true;
   }
-}
+
+}//Fim da função
 
   //Função do login
 
@@ -47,18 +70,22 @@ export class LoginComponent implements OnInit {
     //Fazer validação
     if(this.validaLogin()){
 
-      console.log(this.userModel);
+      // console.log(this.userModel);
 
       this.userService.sigin(this.userModel)
       .subscribe(
         {
           next: (response)=>{
-            console.log(response);
+            
+            // console.log(response);
             this.mensagem = `Logado com Sucesso! ${response.status} ${response.statusText}`
-      
+            
+            //Encaminhar para a rota home
+            this.router.navigate ([''])
+            // console.log(this.router);
           },
           error: (e)=>{
-            console.log('Deu ruim',e);
+            // console.log('Deu ruim',e);
             // console.clear()
             this.mensagem = `${e.error} ${e.status} ${e.statusText}`
       
@@ -70,9 +97,9 @@ export class LoginComponent implements OnInit {
       this.mensagem = "Preencher todos os campos"
     
 
-    } else{//Falta preencher campos
+    } else{//Falta preencher campos ou contem SQL injection
       console.log(this.userModel);
-      this.mensagem = "Preencher todos os campos"
+      this.mensagem = "Preencher todos os campos corretamente"
 
     }
      
